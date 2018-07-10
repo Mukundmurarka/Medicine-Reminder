@@ -16,12 +16,21 @@
         android:layout_marginRight="41dp"
         android:layout_marginStart="280dp"
         android:layout_marginTop="400dp"
+        android:contentDescription="@string/todo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/plus"
-        android:contentDescription="@string/todo" />
+        app:srcCompat="@drawable/plus" />
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="395dp"
+        android:layout_height="585dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -27,9 +28,11 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class Main2Activity extends AppCompatActivity {
-    EditText name,date,time;
-    TextView datePick,timepick;
+    EditText name;
+    TextView date,time;
+    Button datePick,timepick;
     private int mYear, mMonth, mDay, mHour, mMinute;
+    ImageView cal,clk;
 
     private int userYear,userMonth,userDay,userHour,userMinute;
 
@@ -41,13 +44,15 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        name = findViewById(R.id.namemm);
-        date = findViewById(R.id.editText2);
-        time = findViewById(R.id.editText3);
-        setalarm = findViewById(R.id.button2);
+        name = findViewById(R.id.editText);
+        date = findViewById(R.id.in_date);
+        time = findViewById(R.id.in_time);
+        setalarm = findViewById(R.id.button5);
         save = findViewById(R.id.button);
-        datePick= findViewById(R.id.textView2);
-        timepick = findViewById(R.id.textView3);
+        datePick= findViewById(R.id.btn_date);
+        timepick = findViewById(R.id.btn_time);
+        cal=findViewById(R.id.imageView3);
+        clk=findViewById(R.id.imageView2);
         datePick.setOnClickListener(new View.OnClickListener() {
             @TargetApi(Build.VERSION_CODES.N)
             @RequiresApi(api = Build.VERSION_CODES.N)
