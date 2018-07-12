@@ -5,11 +5,13 @@ import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
@@ -29,8 +31,9 @@ import java.util.concurrent.TimeUnit;
 
 public class Main2Activity extends AppCompatActivity {
     EditText name;
-    TextView date,time;
+    TextView date,time,msg;
     Button datePick,timepick;
+    String temp1,temp2,temp3=null;
     private int mYear, mMonth, mDay, mHour, mMinute;
     ImageView cal,clk;
 
@@ -40,10 +43,14 @@ public class Main2Activity extends AppCompatActivity {
     Button save,setalarm;
     java.sql.Time timeValue;
 
+    Context context;
+    Calendar calendar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
         name = findViewById(R.id.editText);
         date = findViewById(R.id.in_date);
         time = findViewById(R.id.in_time);
@@ -53,6 +60,12 @@ public class Main2Activity extends AppCompatActivity {
         timepick = findViewById(R.id.btn_time);
         cal=findViewById(R.id.imageView3);
         clk=findViewById(R.id.imageView2);
+        msg = findViewById(R.id.msg);
+
+        context = Main2Activity.this;
+        calendar  = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+
         datePick.setOnClickListener(new View.OnClickListener() {
             @TargetApi(Build.VERSION_CODES.N)
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -86,6 +99,9 @@ public class Main2Activity extends AppCompatActivity {
                 dd.show();
             }
         });
+
+
+
         timepick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,8 +119,10 @@ public class Main2Activity extends AppCompatActivity {
                          timeValue = new java.sql.Time(format.parse(dtStart).getTime());
                          time.setText(String.valueOf(timeValue));
 
-                         userMinute = minute;
-                         userHour = hourOfDay;
+                         //calender code
+                         calendar.set(Calendar.HOUR_OF_DAY , hourOfDay);
+                         calendar.set(Calendar.MINUTE , minute);
+
 
                      } catch (ParseException e) {
                          e.printStackTrace();
@@ -116,25 +134,39 @@ public class Main2Activity extends AppCompatActivity {
         });
 
         setalarm.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.KITKAT)
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-               // long timet=Integer.parseInt(String.valueOf(time));
-                Intent i =  new Intent(Main2Activity.this,Alarm.class);
-                PendingIntent pi = PendingIntent.getBroadcast(getApplicationContext(),0, i,0);
-                AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-                long hour = TimeUnit.HOURS.toMillis((long)userHour);
-                long minute = TimeUnit.MINUTES.toMillis((long)userMinute);
+                if (TextUtils.isEmpty(time.getText().toString())) {
+                    time.setError("time required ");
+                } else {
 
-                long totalMillSecond = hour+minute;
-                Log.d("test",""+totalMillSecond);
-                am.set(AlarmManager.RTC_WAKEUP,totalMillSecond,pi);
+                    AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+
+                    Intent intent = new Intent(Main2Activity.this, Alarm.class);
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
+
+                    am.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+
+                    Toast.makeText(Main2Activity.this, "alarm add successfully", Toast.LENGTH_LONG).show();
+                }
             }
         });
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Main2Activity.this,"add successfully",Toast.LENGTH_LONG).show();
+
+
+
+                    Medicine medicine = new Medicine(Main2Activity.this);
+                    medicine.addData(name.getText().toString(), date.getText().toString(), time.getText().toString());
+                    Intent intent = new Intent(Main2Activity.this, MainActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(Main2Activity.this, "add successfully", Toast.LENGTH_LONG).show();
+
+
             }
         });
 
