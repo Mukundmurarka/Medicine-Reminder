@@ -10,5 +10,6 @@
     <string name="todo">TODO</string>
     <string name="time1"><![CDATA[<TIME>]]></string>
     <string name="date1">DATE</string>
+    <string name="medicine_reminder">MEDICINE REMINDER</string>
 
 </resources>

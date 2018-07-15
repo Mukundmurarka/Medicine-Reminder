@@ -10,7 +10,7 @@ import android.widget.ImageView;
 
 public class splashScreen extends AppCompatActivity {
     private static int time_out= 2000;
-    ImageView imageView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,6 @@ public class splashScreen extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash_screen);
         getSupportActionBar().hide();
-        imageView = findViewById(R.id.imageView);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

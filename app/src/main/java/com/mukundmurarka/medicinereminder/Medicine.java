@@ -14,7 +14,10 @@ public class Medicine extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE USER(Name text,Date text,Time text)");
+        db.execSQL("CREATE TABLE USER(" +
+                "Name text," +
+                "Date text," +
+                "Time text)");
 
     }
 
@@ -35,15 +38,16 @@ public class Medicine extends SQLiteOpenHelper {
         db.insert("USER", null, contentValues);
     }
 
-    public Cursor getdata() {
+    public Cursor getData() {
         SQLiteDatabase db= getReadableDatabase();
         Cursor cursor = db.query("USER",null,null,null,null,null,null);
         return cursor;
     }
 
-    public void ondelete(String name) {
+    public void onDelete(String name) {
         SQLiteDatabase db =  getWritableDatabase();
-        String arr[]={name};
-        db.delete("UESR",name,arr);
+        String[] whreArg = {name};
+        db.delete("USER","Name = ?", whreArg);
+
     }
 }

@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Main2Activity extends AppCompatActivity {
     EditText name;
-    TextView date,time,msg;
+    TextView date,time;
     Button datePick,timepick;
     String temp1,temp2,temp3=null;
     private int mYear, mMonth, mDay, mHour, mMinute;
@@ -40,7 +40,7 @@ public class Main2Activity extends AppCompatActivity {
     private int userYear,userMonth,userDay,userHour,userMinute;
 
     SimpleDateFormat format;
-    Button save,setalarm;
+    Button save;
     java.sql.Time timeValue;
 
     Context context;
@@ -54,13 +54,12 @@ public class Main2Activity extends AppCompatActivity {
         name = findViewById(R.id.editText);
         date = findViewById(R.id.in_date);
         time = findViewById(R.id.in_time);
-        setalarm = findViewById(R.id.button5);
+
         save = findViewById(R.id.button);
         datePick= findViewById(R.id.btn_date);
         timepick = findViewById(R.id.btn_time);
         cal=findViewById(R.id.imageView3);
         clk=findViewById(R.id.imageView2);
-        msg = findViewById(R.id.msg);
 
         context = Main2Activity.this;
         calendar  = Calendar.getInstance();
@@ -90,6 +89,10 @@ public class Main2Activity extends AppCompatActivity {
 
                             formatter = new SimpleDateFormat("dd/MMM/yyyy");
 
+                            //calander code
+                            calendar.set(Calendar.YEAR , year);
+                            calendar.set(Calendar.MONTH , monthOfYear);
+                            calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -99,8 +102,6 @@ public class Main2Activity extends AppCompatActivity {
                 dd.show();
             }
         });
-
-
 
         timepick.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,44 +134,33 @@ public class Main2Activity extends AppCompatActivity {
             }
         });
 
-        setalarm.setOnClickListener(new View.OnClickListener() {
+        save.setOnClickListener(new View.OnClickListener() {
             @TargetApi(Build.VERSION_CODES.KITKAT)
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
 
-                if (TextUtils.isEmpty(time.getText().toString())) {
-                    time.setError("time required ");
-                } else {
+                if (TextUtils.isEmpty(name.getText().toString())) {
+                    name.setError("Required ");
+                }
 
+                else {
                     AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
                     Intent intent = new Intent(Main2Activity.this, Alarm.class);
                     PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
 
                     am.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+                    Medicine medicine = new Medicine(Main2Activity.this);
+                    medicine.addData(name.getText().toString().trim(), date.getText().toString().trim(), time.getText().toString().trim());
+                    Intent intent1 = new Intent(Main2Activity.this, MainActivity.class);
+                    startActivity(intent1);
+                    Toast.makeText(Main2Activity.this, "add successfully", Toast.LENGTH_LONG).show();
 
                     Toast.makeText(Main2Activity.this, "alarm add successfully", Toast.LENGTH_LONG).show();
                 }
             }
         });
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-                    Medicine medicine = new Medicine(Main2Activity.this);
-                    medicine.addData(name.getText().toString(), date.getText().toString(), time.getText().toString());
-                    Intent intent = new Intent(Main2Activity.this, MainActivity.class);
-                    startActivity(intent);
-                    Toast.makeText(Main2Activity.this, "add successfully", Toast.LENGTH_LONG).show();
-
-
-            }
-        });
-
-
     }
 }
 

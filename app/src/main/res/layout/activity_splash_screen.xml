@@ -4,36 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/mide"
+    android:background="@drawable/mmm"
+
     tools:context=".splashScreen">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="92dp"
-        android:layout_height="71dp"
-        android:layout_marginBottom="85dp"
-        android:layout_marginEnd="146dp"
-        android:layout_marginLeft="146dp"
-        android:layout_marginRight="146dp"
-        android:layout_marginStart="146dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="356dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="156dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="68dp"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
+        android:layout_marginEnd="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="77dp"
+        android:text="@string/medicine_reminder"
+        android:textColor="#b70101"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:fontFamily="@font/antic_slab"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.259"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/mmmmmmm" />
+        tools:ignore="MissingConstraints" />
+
 </android.support.constraint.ConstraintLayout>

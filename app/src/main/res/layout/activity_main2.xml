@@ -35,7 +35,7 @@
 
         <TextView
             android:id="@+id/in_date"
-            android:layout_width="162dp"
+            android:layout_width="203dp"
             android:layout_height="49dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
@@ -55,10 +55,10 @@
             android:layout_marginLeft="11dp"
             android:layout_marginStart="11dp"
             android:layout_marginTop="200dp"
-            android:background="#006400"
+            android:background="#0064f0"
             android:text="@string/date1"
             android:textColor="#ffffff"
-            android:textSize="14sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/btn_time"
             app:layout_constraintEnd_toStartOf="@+id/in_date"
             app:layout_constraintHorizontal_bias="0.0"
@@ -68,7 +68,7 @@
 
         <TextView
             android:id="@+id/in_time"
-            android:layout_width="157dp"
+            android:layout_width="199dp"
             android:layout_height="42dp"
             android:layout_alignEnd="@+id/in_date"
             android:layout_alignRight="@+id/in_date"
@@ -80,29 +80,30 @@
             android:id="@+id/btn_time"
             android:layout_width="96dp"
             android:layout_height="46dp"
+            android:layout_alignLeft="@+id/btn_date"
             android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/btn_date"
             android:layout_marginBottom="210dp"
-            android:background="#006400"
+            android:background="#0064f0"
             android:text="@string/time"
             android:textColor="#ffffff"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/in_time"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_alignLeft="@+id/btn_date" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/editText"
-            android:layout_width="179dp"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/in_date"
             android:layout_alignStart="@+id/in_date"
             android:layout_alignTop="@+id/button2"
             android:ems="10"
             android:hint="@string/enter_medicine_name"
             android:inputType="textPersonName"
             tools:layout_editor_absoluteX="109dp"
-            tools:layout_editor_absoluteY="180dp"
-            android:layout_alignLeft="@+id/in_date" />
+            tools:layout_editor_absoluteY="180dp" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -121,9 +122,10 @@
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignTop="@+id/button5"
-            android:layout_marginEnd="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="93dp"
+            android:layout_marginStart="147dp"
             android:background="#F06738"
             android:text="@string/save"
             android:textSize="24sp"
@@ -131,47 +133,26 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="50dp" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/btn_date"
             android:layout_alignParentTop="true"
             android:layout_alignStart="@+id/btn_date"
             android:layout_marginTop="77dp"
-            android:background="#006400"
+            android:background="#0064f0"
             android:text="@string/medicine"
             android:textColor="#ffffff"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/btn_date"
             app:layout_constraintEnd_toStartOf="@+id/editText"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_alignLeft="@+id/btn_date" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="39dp"
-            android:layout_marginStart="72dp"
-            android:text="@string/set_alarm"
-            android:layout_marginLeft="72dp"
-            android:layout_alignParentLeft="true" />
-
-        <TextView
-            android:id="@+id/msg"
-            android:layout_width="273dp"
-            android:layout_height="30dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="112dp"
-            android:text="TextView" />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
