@@ -1,8 +1,10 @@
 package com.mukundmurarka.medicinereminder;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -60,17 +62,48 @@ public class MainActivity extends AppCompatActivity {
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
 
-                medicine.onDelete(nameList.get(position));
 
-                totalList.remove(position);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
-                arrayAdapter.notifyDataSetChanged();
+                builder.setTitle("Confirm");
+                builder.setMessage("Are you sure want to delete ?");
 
-                Toast.makeText(MainActivity.this, "Item Deleted", Toast.LENGTH_LONG).show();
+                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        medicine.onDelete(nameList.get(position));
+
+                        totalList.remove(position);
+
+                        arrayAdapter.notifyDataSetChanged();
+
+                        Toast.makeText(MainActivity.this, "Item Deleted", Toast.LENGTH_LONG).show();
+                      //
+
+                        dialog.dismiss();
+                    }
+                });
+
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+
+                        // Do nothing
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
                 return true;
             }
+
         });
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
