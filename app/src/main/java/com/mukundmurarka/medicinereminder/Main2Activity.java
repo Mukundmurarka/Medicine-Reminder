@@ -123,7 +123,7 @@ public class Main2Activity extends AppCompatActivity {
                          //calender code
                          calendar.set(Calendar.HOUR_OF_DAY , hourOfDay);
                          calendar.set(Calendar.MINUTE , minute);
-
+                           calendar.set(Calendar.SECOND,0);
 
                      } catch (ParseException e) {
                          e.printStackTrace();
