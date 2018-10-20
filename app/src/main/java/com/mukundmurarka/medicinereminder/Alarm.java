@@ -1,6 +1,7 @@
 package com.mukundmurarka.medicinereminder;
 
 import android.app.AlarmManager;
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -23,6 +24,17 @@ public class Alarm extends BroadcastReceiver {
         sendNotification(context);
     }
     private void sendNotification(Context context){
+
+//        Notification sender;
+//        Notification notification = new Notification.Builder(context)
+//                .setContentTitle("New photo from " + sender.toString())
+//                .setContentText(subject)
+//                .setSmallIcon(R.drawable.new_post)
+//                .setLargeIcon(aBitmap)
+//                .setStyle(new Notification.BigPictureStyle()
+//                        .bigPicture(aBigBitmap))
+//                .build();
+
 
         NotificationCompat.Builder mBuilder = new
                 NotificationCompat.Builder(context, "new_notify")
